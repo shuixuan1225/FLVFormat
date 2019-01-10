@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4FBF264A29856F1BBC875B /* libPods-FlvFile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E38DFA37C1E54A2646814D8 /* libPods-FlvFile.a */; };
+		4A4FE8BF21E1924500B1920B /* BIByteReader.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FE8BE21E1924500B1920B /* BIByteReader.c */; };
+		4A8B23D121DF4C1000F72565 /* BIMalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A8B23D021DF4C1000F72565 /* BIMalloc.c */; };
 		4A8FDDF521D242EA00B0D73A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDDF421D242EA00B0D73A /* AppDelegate.m */; };
 		4A8FDDF821D242EA00B0D73A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDDF721D242EA00B0D73A /* ViewController.m */; };
 		4A8FDDFB21D242EA00B0D73A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A8FDDF921D242EA00B0D73A /* Main.storyboard */; };
@@ -14,6 +17,12 @@
 		4A8FDE0021D242ED00B0D73A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A8FDDFE21D242ED00B0D73A /* LaunchScreen.storyboard */; };
 		4A8FDE0321D242ED00B0D73A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDE0221D242ED00B0D73A /* main.m */; };
 		4A8FDE0D21D242ED00B0D73A /* FlvFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8FDE0C21D242ED00B0D73A /* FlvFileTests.m */; };
+		4A8FDE1821D2451B00B0D73A /* cuc_ieschool.flv in Resources */ = {isa = PBXBuildFile; fileRef = 4A8FDE1721D243B700B0D73A /* cuc_ieschool.flv */; };
+		4A92073E21E47A2000243E51 /* HJOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A92073D21E47A2000243E51 /* HJOpenGLView.m */; };
+		4AD39A5B21DE344200DBFAF3 /* BIFlvDecoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4AD39A5A21DE344200DBFAF3 /* BIFlvDecoder.c */; };
+		4AD4842621E4887000E1FB61 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AD4842421E4887000E1FB61 /* Shader.vsh */; };
+		4AD4842721E4887000E1FB61 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4AD4842521E4887000E1FB61 /* Shader.fsh */; };
+		4AD6770B21E59621004DED6B /* BIH264Decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6770A21E59621004DED6B /* BIH264Decoder.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E38DFA37C1E54A2646814D8 /* libPods-FlvFile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlvFile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34D726A83A0FD8B0BAAEFB97 /* Pods-FlvFile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlvFile.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlvFile/Pods-FlvFile.release.xcconfig"; sourceTree = "<group>"; };
+		4A4FE8BD21E1924500B1920B /* BIByteReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIByteReader.h; sourceTree = "<group>"; };
+		4A4FE8BE21E1924500B1920B /* BIByteReader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = BIByteReader.c; sourceTree = "<group>"; };
+		4A8B23CF21DF4C1000F72565 /* BIMalloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIMalloc.h; sourceTree = "<group>"; };
+		4A8B23D021DF4C1000F72565 /* BIMalloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = BIMalloc.c; sourceTree = "<group>"; };
 		4A8FDDF021D242EA00B0D73A /* FlvFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlvFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8FDDF321D242EA00B0D73A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A8FDDF421D242EA00B0D73A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -40,6 +55,17 @@
 		4A8FDE0821D242ED00B0D73A /* FlvFileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlvFileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8FDE0C21D242ED00B0D73A /* FlvFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlvFileTests.m; sourceTree = "<group>"; };
 		4A8FDE0E21D242ED00B0D73A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A8FDE1721D243B700B0D73A /* cuc_ieschool.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = cuc_ieschool.flv; sourceTree = "<group>"; };
+		4A92073C21E47A1F00243E51 /* HJOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJOpenGLView.h; sourceTree = "<group>"; };
+		4A92073D21E47A2000243E51 /* HJOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJOpenGLView.m; sourceTree = "<group>"; };
+		4AD39A5721DE2E9900DBFAF3 /* BIFlv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIFlv.h; sourceTree = "<group>"; };
+		4AD39A5921DE344200DBFAF3 /* BIFlvDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIFlvDecoder.h; sourceTree = "<group>"; };
+		4AD39A5A21DE344200DBFAF3 /* BIFlvDecoder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = BIFlvDecoder.c; sourceTree = "<group>"; };
+		4AD4842421E4887000E1FB61 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		4AD4842521E4887000E1FB61 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		4AD6770921E59621004DED6B /* BIH264Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIH264Decoder.h; sourceTree = "<group>"; };
+		4AD6770A21E59621004DED6B /* BIH264Decoder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = BIH264Decoder.c; sourceTree = "<group>"; };
+		84A3586F9C1693DDFAA7ED2C /* Pods-FlvFile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlvFile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlvFile/Pods-FlvFile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4FBF264A29856F1BBC875B /* libPods-FlvFile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +87,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0255A95B390D1114C865188C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84A3586F9C1693DDFAA7ED2C /* Pods-FlvFile.debug.xcconfig */,
+				34D726A83A0FD8B0BAAEFB97 /* Pods-FlvFile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4A8B23CE21DF4BDB00F72565 /* BIFlv */ = {
+			isa = PBXGroup;
+			children = (
+				4AD4842521E4887000E1FB61 /* Shader.fsh */,
+				4AD4842421E4887000E1FB61 /* Shader.vsh */,
+				4A92073C21E47A1F00243E51 /* HJOpenGLView.h */,
+				4A92073D21E47A2000243E51 /* HJOpenGLView.m */,
+				4A8FDE1721D243B700B0D73A /* cuc_ieschool.flv */,
+				4AD39A5721DE2E9900DBFAF3 /* BIFlv.h */,
+				4AD39A5921DE344200DBFAF3 /* BIFlvDecoder.h */,
+				4AD39A5A21DE344200DBFAF3 /* BIFlvDecoder.c */,
+				4A8B23CF21DF4C1000F72565 /* BIMalloc.h */,
+				4A8B23D021DF4C1000F72565 /* BIMalloc.c */,
+				4A4FE8BD21E1924500B1920B /* BIByteReader.h */,
+				4A4FE8BE21E1924500B1920B /* BIByteReader.c */,
+				4AD6770921E59621004DED6B /* BIH264Decoder.h */,
+				4AD6770A21E59621004DED6B /* BIH264Decoder.c */,
+			);
+			path = BIFlv;
+			sourceTree = "<group>";
+		};
 		4A8FDDE721D242EA00B0D73A = {
 			isa = PBXGroup;
 			children = (
 				4A8FDDF221D242EA00B0D73A /* FlvFile */,
 				4A8FDE0B21D242ED00B0D73A /* FlvFileTests */,
 				4A8FDDF121D242EA00B0D73A /* Products */,
+				0255A95B390D1114C865188C /* Pods */,
+				ABA7D5120CE21FED4505AFDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +140,7 @@
 		4A8FDDF221D242EA00B0D73A /* FlvFile */ = {
 			isa = PBXGroup;
 			children = (
+				4A8B23CE21DF4BDB00F72565 /* BIFlv */,
 				4A8FDDF321D242EA00B0D73A /* AppDelegate.h */,
 				4A8FDDF421D242EA00B0D73A /* AppDelegate.m */,
 				4A8FDDF621D242EA00B0D73A /* ViewController.h */,
@@ -103,6 +163,14 @@
 			path = FlvFileTests;
 			sourceTree = "<group>";
 		};
+		ABA7D5120CE21FED4505AFDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E38DFA37C1E54A2646814D8 /* libPods-FlvFile.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,6 +178,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A8FDE1121D242ED00B0D73A /* Build configuration list for PBXNativeTarget "FlvFile" */;
 			buildPhases = (
+				8717811D960AF4049EF31634 /* [CP] Check Pods Manifest.lock */,
 				4A8FDDEC21D242EA00B0D73A /* Sources */,
 				4A8FDDED21D242EA00B0D73A /* Frameworks */,
 				4A8FDDEE21D242EA00B0D73A /* Resources */,
@@ -183,9 +252,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD4842721E4887000E1FB61 /* Shader.fsh in Resources */,
+				4A8FDE1821D2451B00B0D73A /* cuc_ieschool.flv in Resources */,
 				4A8FDE0021D242ED00B0D73A /* LaunchScreen.storyboard in Resources */,
 				4A8FDDFD21D242ED00B0D73A /* Assets.xcassets in Resources */,
 				4A8FDDFB21D242EA00B0D73A /* Main.storyboard in Resources */,
+				4AD4842621E4887000E1FB61 /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,13 +270,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8717811D960AF4049EF31634 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlvFile-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4A8FDDEC21D242EA00B0D73A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD39A5B21DE344200DBFAF3 /* BIFlvDecoder.c in Sources */,
 				4A8FDDF821D242EA00B0D73A /* ViewController.m in Sources */,
 				4A8FDE0321D242ED00B0D73A /* main.m in Sources */,
+				4AD6770B21E59621004DED6B /* BIH264Decoder.c in Sources */,
+				4A92073E21E47A2000243E51 /* HJOpenGLView.m in Sources */,
+				4A8B23D121DF4C1000F72565 /* BIMalloc.c in Sources */,
+				4A4FE8BF21E1924500B1920B /* BIByteReader.c in Sources */,
 				4A8FDDF521D242EA00B0D73A /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +459,7 @@
 		};
 		4A8FDE1221D242ED00B0D73A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A3586F9C1693DDFAA7ED2C /* Pods-FlvFile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -372,11 +471,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.capture.FlvFile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = " -Wno-shorten-64-to-32";
 			};
 			name = Debug;
 		};
 		4A8FDE1321D242ED00B0D73A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34D726A83A0FD8B0BAAEFB97 /* Pods-FlvFile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -388,6 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.capture.FlvFile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = " -Wno-shorten-64-to-32";
 			};
 			name = Release;
 		};
