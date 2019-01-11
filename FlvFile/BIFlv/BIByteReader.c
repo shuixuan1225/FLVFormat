@@ -97,7 +97,7 @@ uint8_t* readNaluDataValue(bi_data_buffer* data,uint32_t length){
     if (length<=0) {
         return NULL;
     }
-    uint32_t t = 0x00000001;
+    uint32_t t = CFSwapInt32HostToBig(length);//0x00000001;
     uint8_t* string = (uint8_t*)bi_malloc(sizeof(uint8_t)*length +4);
     memcpy(string,&t, 4);
     memcpy(string+4, data->data+data->cursor, length);

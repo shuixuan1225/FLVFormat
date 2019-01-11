@@ -33,4 +33,6 @@ typedef struct bi_video_output_package {
 
 bi_video_output_package* decoderInputTag(bi_video_input_package* inputPackage);
 
+void EndVideoToolBox(void);
+
 #endif /* BIH264Decoder_h */

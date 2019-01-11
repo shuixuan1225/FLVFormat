@@ -10,8 +10,8 @@
 #import <VideoToolbox/VideoToolbox.h>
 #include "BIMalloc.h"
 
-VTDecompressionSessionRef   mDecodeSession;
-CMFormatDescriptionRef      mFormatDescription; // video的格式，包括宽高、颜色空间、编码格式等；对于H.264的视频，PPS和SPS的数据也在这里；
+VTDecompressionSessionRef   mDecodeSession = NULL;
+CMFormatDescriptionRef      mFormatDescription = NULL; // video的格式，包括宽高、颜色空间、编码格式等；对于H.264的视频，PPS和SPS的数据也在这里；
 
 uint8_t     *mSPS;
 long        mSPSSize;
@@ -28,14 +28,14 @@ bi_video_output_package* decoderInputTag(bi_video_input_package* inputPackage){
     
     uint8_t* packetBuffer = inputPackage->packetBuffer;
     uint32_t packetSize = inputPackage->packetSize;
-        // 替换头字节长度
-        uint32_t nalSize = (uint32_t)(packetSize - 4);
-        uint32_t *pNalSize = (uint32_t *)packetBuffer;
-        *pNalSize = CFSwapInt32HostToBig(nalSize);
-        
+//        // 替换头字节长度
+//        uint32_t nalSize = (uint32_t)(packetSize - 4);
+//        uint32_t *pNalSize = (uint32_t *)packetBuffer;
+//        *pNalSize = CFSwapInt32HostToBig(nalSize);
+    
         // 在buffer的前面填入代表长度的int    // 以00 00 00 01分割之后的下一个字节就是--NALU类型--
         CVPixelBufferRef pixelBuffer = NULL;
-        int nalType = packetBuffer[4] & 0x1F;  // NALU类型  & 0001  1111
+        uint8_t nalType = packetBuffer[4] & 0x1F;  // NALU类型  & 0001  1111
         switch (nalType) {
             case 0x05:
                 //                NSLog(@"*********** IDR frame, I帧");
@@ -56,6 +56,7 @@ bi_video_output_package* decoderInputTag(bi_video_input_package* inputPackage){
                 break;
             default:
                 //                NSLog(@"*********** B/P frame"); // P帧?
+                initVideoToolBox();
                 pixelBuffer = decode(packetBuffer,packetSize);
                 
                 break;
@@ -102,6 +103,9 @@ void initVideoToolBox (void){
                                                   NULL, attrs,
                                                   &callBackRecord,
                                                   &mDecodeSession);
+            if(status != kCMBlockBufferNoErr) {
+//                mDecodeSession = NULL;
+            }
             CFRelease(attrs);
         } else {
 //            NSLog(@"IOS8VT: reset decoder session failed status = %d", (int)status);
@@ -175,7 +179,7 @@ CVPixelBufferRef decode(uint8_t* packetBuffer,uint32_t packetSize){
     return outputPixelBuffer;
 }
 
-void EndVideoToolBox()
+void EndVideoToolBox(void)
 {
     if(mDecodeSession) {
         VTDecompressionSessionInvalidate(mDecodeSession);

@@ -24,12 +24,8 @@
 
 @interface ViewController ()
 {
-    NSFileHandle* _fileHandle;
-//    BIFlvDecoder* _decoder;
     NSMutableArray* _mutArray;
 }
-
-//@property (nonatomic, retain) HJH264Decoder *decoder;
 
 @property (nonatomic, strong) HJOpenGLView  *playView;
 
@@ -41,19 +37,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _decoder = [[BIFlvDecoder alloc] init];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-//    data = [_fileHandle readDataOfLength:4];
-//    [self readTag];
-//    NSMutableData* mutData = [NSMutableData data];
-//    int length = 0;//CFSwapInt32BigToHost
-//    [mutData appendBytes:&length length:sizeof(length)];
     
     // playView
     [self.view addSubview:self.playView];
     self.playView.frame = CGRectMake(PLAYVIEW_PORTRAIT_STARTX, PLAYVIEW_PORTRAIT_STARTY, PLAYVIEW_PORTRAIT_WIDTH, PLAYVIEW_PORTRAIT_HEIGHT);
-    //    NSLog(@"-- %d, %f, %f, %f",PLAYVIEW_PORTRAIT_STARTX, PLAYVIEW_PORTRAIT_STARTY, PLAYVIEW_PORTRAIT_WIDTH, PLAYVIEW_PORTRAIT_HEIGHT);
     [self.playView setupGL];
     [self.view bringSubviewToFront:self.bt];
     
@@ -67,17 +54,16 @@
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
     
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"cuc_ieschool" ofType:@"flv"];
-    _fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
-    NSData* data = [_fileHandle readDataOfLength:BI_READ_LENGTH*300];
+    NSFileHandle* _fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    NSData* data = [_fileHandle readDataOfLength:BI_READ_LENGTH*3000];
     Byte *testByte = (Byte *)[data bytes];
     
     bi_data_buffer buffer;
     buffer.data = testByte;
-    buffer.length = BI_READ_LENGTH*300;
+    buffer.length = BI_READ_LENGTH*3000;
     buffer.cursor = 0;
     
     bi_flv_header* header = readHeaderWithAlloc(&buffer);
-//    NSLog(@"header length:%d ## %zu",header->header_size,total_alloc_size);
     freeFlvHeader(header);
     header = NULL;
 //    NSLog(@"total_alloc_size:%zu",total_alloc_size);
@@ -93,23 +79,15 @@
 //    NSLog(@"total_alloc_size:%zu",total_alloc_size);
     bi_flv_tag* flvTag = readFlvTag(&buffer);
     while (flvTag != NULL) {
-//        NSLog(@"^^^^ total_alloc_size:%zu",total_alloc_size);
         [self processTag:flvTag];
         freeFlvTag(flvTag);
-//        NSLog(@"**  total_alloc_size:%zu",total_alloc_size);
         flvTag = NULL;
         flvTag = readFlvTag(&buffer);
     }
         [self displayPic];
+        EndVideoToolBox();
         NSLog(@"$$  total_alloc_size:%zu",total_alloc_size);
     });
-//    bi_flv_tag* spsTag = readFlvTag(&buffer);
-//        freeFlvTag(spsTag);
-//    bi_flv_tag* audioTag = readFlvTag(&buffer);
-//        freeFlvTag(audioTag);
-//    bi_flv_tag* videoTag = readFlvTag(&buffer);
-//        freeFlvTag(videoTag);
-//        });
 }
 
 -(void)processTag:(bi_flv_tag*)flvTag{
@@ -152,14 +130,20 @@
                 
             }else{
                 bi_flv_video_NALU_list_node* videoData = package->video_data;
+                NSMutableData* mutData = [NSMutableData data];
+                uint32_t length = 0;
                 while (videoData != NULL) {
                     bi_flv_video_NALU_data*  naluData = videoData->nalu_data;
-                    inputPackage->packetBuffer = naluData->data;
-                    inputPackage->packetSize = naluData->length;
+//                    inputPackage->packetBuffer = naluData->data;
+//                    inputPackage->packetSize = naluData->length;
                     inputPackage->cts = package->cts;
-                    [self recvVideoTag:flvTag package:inputPackage];
+                    [mutData appendBytes:naluData->data length:naluData->length];
+                    length += naluData->length;
                     videoData = videoData->next;
                 }
+                inputPackage->packetBuffer = (void*)[mutData bytes];
+                inputPackage->packetSize = length;
+                [self recvVideoTag:flvTag package:inputPackage];
             }
         }
         bi_free(inputPackage);
@@ -168,42 +152,15 @@
 
 -(void)displayPic{
     
-    [_mutArray sortUsingComparator:^NSComparisonResult(NSData*  _Nonnull obj1, NSData*  _Nonnull obj2) {
-        bi_video_output_package package1;
-        [obj1 getBytes:&package1 length:sizeof(package1)];
-        bi_video_output_package* outputPackage1 = &package1;
-        uint32_t disPlayTime1 = outputPackage1->timestamp*90+outputPackage1->cts;
-        
-        bi_video_output_package package2;
-        [obj2 getBytes:&package2 length:sizeof(package2)];
-        bi_video_output_package* outputPackage2 = &package2;
-        uint32_t disPlayTime2 = outputPackage2->timestamp*90+outputPackage2->cts;
-        
-        if (disPlayTime1<disPlayTime2) {
-            return NSOrderedAscending;
-        }else if(disPlayTime1>disPlayTime2){
-            return NSOrderedDescending;
-        }
-        return NSOrderedSame;
-    }];
-    
-    uint32_t time = 0;
+
     for (NSData* data in _mutArray) {
         bi_video_output_package package;
         [data getBytes:&package length:sizeof(package)];
-        bi_video_output_package* outputPackage = &package;//(bi_video_output_package *)[data bytes];
+        bi_video_output_package* outputPackage = &package;
         
-        uint32_t disPlayTime = outputPackage->timestamp*90+outputPackage->cts;
-//        NSLog(@"usleep:%d  ## %d ## %d # %d",disPlayTime-time,outputPackage->timestamp*90,outputPackage->cts,outputPackage->type);
-        usleep((disPlayTime-time)*1);
-        time=disPlayTime;
-        
-//        if (outputPackage->cts==0) {
-        NSLog(@"122345");
+//        uint32_t disPlayTime = outputPackage->timestamp*90+outputPackage->cts;
+
             [self.playView displayPixelBuffer:outputPackage->bufferRef];
-        NSLog(@"6786786");
-//        }
-        
         CVPixelBufferRelease(outputPackage->bufferRef);
         
     }
@@ -222,26 +179,8 @@
         [_mutArray addObject:data];
         bi_free(outputPackage);
     }
-    //    _speedLength = length;
-//    printf("----- recved len = %d \n", length);
-    
-    // 解码
-//    [self.decoder startH264DecodeWithVideoData:(char *)videoData andLength:length+4 andReturnDecodedData:^(CVPixelBufferRef pixelBuffer) {
-//
-//        // OpenGL渲染
-//
-//            [self.playView displayPixelBuffer:pixelBuffer];
-//
-//    }];
 }
 
-//-(HJH264Decoder *)decoder
-//{
-//    if (!_decoder) {
-//        _decoder = [[HJH264Decoder alloc] init];
-//    }
-//    return _decoder;
-//}
 
 -(HJOpenGLView *)playView
 {
@@ -249,28 +188,6 @@
         _playView = [[HJOpenGLView alloc] init];
     }
     return _playView;
-}
-
-+ (NSString *)convertDataToHexStr:(NSData *)data
-{
-    if (!data || [data length] == 0) {
-        return @"";
-    }
-    NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
-    
-    [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        unsigned char *dataBytes = (unsigned char*)bytes;
-        for (NSInteger i = 0; i < byteRange.length; i++) {
-            NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-            if ([hexStr length] == 2) {
-                [string appendString:hexStr];
-            } else {
-                [string appendFormat:@"0%@", hexStr];
-            }
-        }
-    }];
-    
-    return string;
 }
 
 @end
