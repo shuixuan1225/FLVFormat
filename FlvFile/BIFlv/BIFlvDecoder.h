@@ -29,3 +29,7 @@ void freeFlvVideoTag(bi_flv_video_tag* tag);
 
 bi_flv_audio_tag* readAudioFlvTag(bi_data_buffer* data,uint32_t data_size);
 void freeFlvAudioTag(bi_flv_audio_tag* tag);
+
+
+bi_rtmp_flv_tag* readRTMPFlvTag(bi_data_buffer* data);
+void freeRTMPFlvTag(bi_rtmp_flv_tag* tag);

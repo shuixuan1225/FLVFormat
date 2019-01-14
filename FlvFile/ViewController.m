@@ -10,17 +10,9 @@
 #include "BIFlvDecoder.h"
 #include "BIMalloc.h"
 #include "BIByteReader.h"
-//#import "HJH264Decoder.h"
 #include "BIH264Decoder.h"
 #import "HJOpenGLView.h"
 
-#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
-
-#define PLAYVIEW_PORTRAIT_STARTX    0
-#define PLAYVIEW_PORTRAIT_STARTY    (SCREENHEIGHT - SCREENWIDTH * (480 / 640.0)) / 2.0
-#define PLAYVIEW_PORTRAIT_WIDTH     SCREENWIDTH
-#define PLAYVIEW_PORTRAIT_HEIGHT    SCREENWIDTH * (480 / 640.0)
 
 @interface ViewController ()
 {
@@ -88,6 +80,7 @@
         EndVideoToolBox();
         NSLog(@"$$  total_alloc_size:%zu",total_alloc_size);
     });
+     
 }
 
 -(void)processTag:(bi_flv_tag*)flvTag{

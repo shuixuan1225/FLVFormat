@@ -257,4 +257,14 @@ typedef struct bi_flv_tag {
     
 }bi_flv_tag;
 
+
+
+typedef struct bi_rtmp_flv_tag {
+    bi_flv_tag_type     type;
+    uint32_t    data_size;//24 数据区的大小，不包括包头。包头总大小是11个字节。
+     uint32_t    timestamp;
+    void*       data;
+    
+}bi_rtmp_flv_tag;
+
 #endif /* BIFlv_h */

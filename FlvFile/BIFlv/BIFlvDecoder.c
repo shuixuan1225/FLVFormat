@@ -526,3 +526,31 @@ void freeFlvTag(bi_flv_tag* flvTag){
     }
     bi_free(flvTag);
 }
+
+bi_rtmp_flv_tag* readRTMPFlvTag(bi_data_buffer* data){
+    uint32_t header_length = 11;
+    if ((data->length - data->cursor) < header_length) {
+        return NULL;
+    }
+    
+    bi_rtmp_flv_tag* flvTag = (bi_rtmp_flv_tag*)bi_malloc(sizeof(bi_flv_tag));
+    flvTag->type = readByte(data,uint8_t);
+    flvTag->data_size = readByteWithLength(data,uint32_t,3);
+    if ((data->length - data->cursor) < (flvTag->data_size+header_length)) {
+        freeRTMPFlvTag(flvTag);
+        return NULL;
+    }
+    flvTag->timestamp = readByteWithLength(data,uint32_t,3);
+    data->cursor -= 7;
+    flvTag->data = readDataValue(data, flvTag->data_size + 11 + 4);
+    return flvTag;
+}
+void freeRTMPFlvTag(bi_rtmp_flv_tag* tag){
+    if (tag == NULL) {
+        return;
+    }
+    if (tag->data != NULL) {
+        bi_free(tag->data);
+    }
+    bi_free(tag);
+}
